@@ -8,11 +8,14 @@ const smartphones = require('./routes/smartphone_route'); // Importa Rota
 //Inicializar app express
 const app = express();
 
+console.log("Current Environment: "+process.env.NODE_ENV);
 
 
 //Acesso à BD
 const mongoose = require('mongoose');
-let url = 'mongodb+srv://root:smartroot2020@cluster0-hwom2.gcp.mongodb.net/test?retryWrites=true&w=majority';
+let url = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@cluster0-hwom2.gcp.mongodb.net/test?retryWrites=true&w=majority';
+
+
 let mongoDB = process.env.MONGODB_URI || url;
 mongoose.connect(mongoDB,{useNewUrlParser: true });
 mongoose.Promise = global.Promise;
